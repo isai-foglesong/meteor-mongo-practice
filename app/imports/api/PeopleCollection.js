@@ -1,3 +1,17 @@
+import 'meteor/aldeed:collection2/dynamic';
+Collection2.load();
 import { Mongo } from 'meteor/mongo';
+import SimpleSchema from 'simpl-schema';
+
+const peopleSchema = new SimpleSchema(
+  {
+    first: String,
+    last: String,
+    age: SimpleSchema.Integer,
+    city: String
+  }
+);
 
 export const PeopleCollection = new Mongo.Collection('People');
+
+PeopleCollection.attachSchema(peopleSchema);
